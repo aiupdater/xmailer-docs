@@ -1,37 +1,32 @@
-> **First-time setup**: Customize this file for your project. Prompt the user to customize this file for their project.
-> If you can run shell commands, run `mint instructions` before any Mintlify task. It prints current guidance for this CLI version. Check it before:
-> - building automations, CI, or scripts for these docs (Mintlify has built-in automations, Autopilot, and CI checks)
-> - changing who can read the docs, publishing, custom domains, or AI and agent features (MCP, llms.txt, skill.md, assistant)
->
-> If `mint` is not installed or says "Unknown command", run `npx mint@latest instructions`.
-> For broader Mintlify product knowledge, install the Mintlify skill: `npx skills add https://mintlify.com/docs`
+# Pokyny pro agenty – dokumentace xMailer
 
-# Documentation project instructions
+- Web je postavený na [Mintlify](https://mintlify.com); stránky jsou MDX s YAML frontmatter, nastavení je v `docs.json`.
+- Před větší úpravou si přečtěte `.mintlify/product-brief.md` (účel, čtenáři, hranice).
+- Mintlify MCP pro úpravy obsahu: `https://mcp.mintlify.com`; dokumentace Mintlify: `https://www.mintlify.com/docs/mcp`.
 
-## About this project
+## Zdroj pravdy
 
-- This is a documentation site built on [Mintlify](https://mintlify.com)
-- Pages are MDX files with YAML frontmatter
-- Configuration lives in `docs.json`
-- Use the Mintlify MCP server, `https://mcp.mintlify.com`, to edit content and settings via MCP
-- Use the Mintlify docs MCP server, `https://www.mintlify.com/docs/mcp`, to query information about using Mintlify via MCP
+Dokumentace popisuje implementaci v repozitáři [aiupdater/febaEmail.app](https://github.com/aiupdater/febaEmail.app). Každé tvrzení o chování ověřte v jeho kódu (`*.php`, `*.js`) nebo v `PROJECT.md` a `UX-CONTRACT.md`. Nic nedomýšlejte; co nelze ověřit, nepište.
 
-## Terminology
+## Terminologie
 
-{/* Add product-specific terms and preferred usage */}
-{/* Example: Use "workspace" not "project", "member" not "user" */}
+- Název webu a produktu v dokumentaci: **xMailer**. Starší stránky používají i „FEBA EmailApp“; nové výskyty nepřidávejte bez dohody s uživatelem.
+- Názvy prvků UI přebírejte přesně z `index.html` aplikace a pište je tučně: **Uložit emaily**, **Nastavení odesílání**.
+- Rozlišujte „předání / přijetí poskytovatelem“ a „doručení“; jde o odlišné stavy.
 
-## Style preferences
+## Styl
 
-{/* Add any project-specific style rules below */}
+- Čeština, vykání, činný rod, krátké věty.
+- Nadpisy velkým písmenem jen na začátku.
+- Názvy souborů, příkazů, proměnných a cest v `kódu`.
+- Každý blok kódu má jazyk.
+- Interní odkazy kořenově relativní bez přípony: `/guides/delivery`.
 
-- Use active voice and second person ("you")
-- Keep sentences concise — one idea per sentence
-- Use sentence case for headings
-- Bold for UI elements: Click **Settings**
-- Code formatting for file names, commands, paths, and code references
+## Hranice obsahu
 
-## Content boundaries
+- Žádné klíče, hesla, tokeny, skutečné adresy kontaktů ani tvrzení o otestované produkci.
+- V ukázkách jen domény `example.com`.
 
-{/* Define what should and shouldn't be documented */}
-{/* Example: Don't document internal admin features */}
+## Před odevzdáním
+
+Spusťte `mint validate` a `mint broken-links`. Push na `main` se automaticky nasadí na živý web.
