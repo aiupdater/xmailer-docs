@@ -10,7 +10,7 @@ Dokumentace popisuje implementaci v repozitáři [aiupdater/febaEmail.app](https
 
 ## Terminologie
 
-- Název webu a produktu v dokumentaci: **xMailer**. Starší stránky používají i „FEBA EmailApp“; nové výskyty nepřidávejte bez dohody s uživatelem.
+- Název webu a produktu v dokumentaci: **xMailer**. Označení „FEBA EmailApp“ nepoužívejte. Názvy z kódu (`FEBA_*`, `X-FEBA-Cron-Token`) a firmu FEBA-MONT ponechte beze změny.
 - Názvy prvků UI přebírejte přesně z `index.html` aplikace a pište je tučně: **Uložit emaily**, **Nastavení odesílání**.
 - Rozlišujte „předání / přijetí poskytovatelem“ a „doručení“; jde o odlišné stavy.
 

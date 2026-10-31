@@ -1,8 +1,8 @@
-# Kontext dokumentace FEBA EmailApp
+# Kontext dokumentace xMailer
 
 ## Účel
 
-Interní webová/PWA aplikace FEBA-MONT pro správu kontaktů, skupin, šablon, potvrzení odběru a nabídkových kampaní. Rozesílky používají databázové fronty, SMTP nebo podporované HTTP poskytovatele.
+xMailer je interní webová/PWA aplikace FEBA-MONT pro správu kontaktů, skupin, šablon, potvrzení odběru a nabídkových kampaní. Rozesílky používají databázové fronty, SMTP nebo podporované HTTP poskytovatele.
 
 ## Čtenáři
 
