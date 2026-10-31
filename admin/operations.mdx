@@ -28,7 +28,7 @@ Fronty xMaileru potřebují pravidelný serverový běh. Webový klient zobrazuj
 php /absolutni/cesta/febaEmail.app/cron_mailgun_sync.php
 ```
 
-CLI odesílacích workerů nepotřebuje browser session. Při HTTP spouštění odesílacích a Mailgun cronů používejte HTTPS a hlavičku `X-FEBA-Cron-Token`. Náhradní parametr `cron_token` může skončit v přístupových logách. Neplatná hlavička má přednost před parametrem.
+CLI odesílacích workerů nepotřebuje browser session. Při HTTP spouštění odesílacích a Mailgun cronů používejte HTTPS a hlavičku `X-XMailer-Cron-Token`. Náhradní parametr `cron_token` může skončit v přístupových logách. Neplatná hlavička má přednost před parametrem.
 
 ## Kontrolujte dokončení synchronizace
 

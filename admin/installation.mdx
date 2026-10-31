@@ -23,12 +23,12 @@ Následující názvy jsou konfigurační proměnné, nikoli hodnoty k převzet�
 
 | Proměnná | Účel |
 | --- | --- |
-| `FEBA_DB_DSN` | PDO DSN databáze MySQL. |
-| `FEBA_DB_USER` | Databázový uživatel. |
-| `FEBA_DB_PASSWORD` | Databázové heslo. |
-| `FEBA_ACCESS_PASSWORD` | Heslo pro přihlášení do aplikace. |
-| `FEBA_SENDING_MASTER_KEY` | Base64 kódování 32 náhodných bajtů pro šifrování uložených propojení. |
-| `FEBA_CRON_TOKEN` | Tajemství pro autentizaci cronů přes HTTP. |
+| `XMAILER_DB_DSN` | PDO DSN databáze MySQL. |
+| `XMAILER_DB_USER` | Databázový uživatel. |
+| `XMAILER_DB_PASSWORD` | Databázové heslo. |
+| `XMAILER_ACCESS_PASSWORD` | Heslo pro přihlášení do aplikace. |
+| `XMAILER_SENDING_MASTER_KEY` | Base64 kódování 32 náhodných bajtů pro šifrování uložených propojení. |
+| `XMAILER_CRON_TOKEN` | Tajemství pro autentizaci cronů přes HTTP. |
 
 Hodnoty nastavte v chráněné konfiguraci hostingu pro webové PHP a pro potřebné CLI úlohy. Neukládejte je do repozitáře ani dokumentace.
 
@@ -75,6 +75,6 @@ Repozitář obsahuje `.devcontainer/` s PHP 8.4, MySQL 8.4 a jednorázovým impo
 docker compose -f .devcontainer/docker-compose.yml up --build -d
 ```
 
-Jeho testovací konfigurace není produkční. Aktuální image připravuje PDO MySQL, nedoplňuje cURL ani `FEBA_SENDING_MASTER_KEY`; samotné spuštění kontejnerů proto nepotvrzuje připravenost všech API poskytovatelů. Skutečné testy odeslání provádějte až po doplnění prostředí.
+Jeho testovací konfigurace není produkční. Aktuální image připravuje PDO MySQL, nedoplňuje cURL ani `XMAILER_SENDING_MASTER_KEY`; samotné spuštění kontejnerů proto nepotvrzuje připravenost všech API poskytovatelů. Skutečné testy odeslání provádějte až po doplnění prostředí.
 
 Zdroj konfigurace: [devcontainer](https://github.com/aiupdater/febaEmail.app/tree/main/.devcontainer), [migrace](https://github.com/aiupdater/febaEmail.app/blob/main/sending_migrate.php).
