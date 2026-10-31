@@ -80,5 +80,15 @@
   },
   "icons": {
     "library": "fontawesome"
+  },
+  "thumbnails": {
+    "surface": "brand",
+    "fonts": {
+      "family": "Montserrat"
+    },
+    "eyebrow": {
+      "source": "dropdown",
+      "style": "bar"
+    }
   }
 }
