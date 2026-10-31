@@ -1,0 +1,42 @@
+---
+title: "Rozpoznejte předání, doručení a chyby zprávy"
+sidebarTitle: "Doručení a historie"
+description: "Přečtěte správně historii zpráv ve FEBA EmailApp. Rozlište přijetí poskytovatelem, doručení, dočasnou či trvalou chybu a nejednoznačný výsledek pokusu."
+keywords:
+  - "doručení"
+  - "historie"
+  - "chyba"
+  - "předáno"
+  - "webhook"
+  - "opakování"
+---
+
+Historie FEBA EmailApp rozlišuje přijetí zprávy poskytovatelem od výsledku doručení. Čítače „zasláno“ vyjadřují potvrzené předání, nikoli přečtení ani jistotu přijetí do schránky.
+
+## Význam stavů
+
+| Stav | Význam | Další postup |
+| --- | --- | --- |
+| Přijato / předáno | SMTP nebo API přijalo zprávu. | U API vyčkejte na doručovací událost; u testu zkontrolujte schránku. |
+| Doručeno | Poskytovatel potvrdil přijetí cílovým poštovním serverem. | Nevykládejte stav jako přečtení. |
+| Dočasná chyba | Doručení narazilo na přechodný problém. | Aplikace zprávu znovu neodesílá; prověřte další události poskytovatele. |
+| Trvalá chyba | Předaná zpráva nebyla doručena. | Zkontrolujte adresu a důvod chyby. |
+| Neznámý výsledek | Síťový pokus skončil bez jednoznačného potvrzení. | Před novým odesláním dohledávejte původní zprávu u poskytovatele. |
+
+## Kdy se zpráva opakuje
+
+Nejednoznačné a přerušené síťové pokusy se automaticky neopakují. Aplikace tím omezuje riziko duplicitního e-mailu. Automatické opakování API se týká jednoznačného HTTP 429, nejvýše pěti pokusů.
+
+Chyba konfigurace může pozastavit konkrétní verzi propojení. Oprava aktuálního nastavení nepřesměruje starou frontu. Před vytvořením náhradní kampaně ověřte stav původních pokusů.
+
+## Odkud přicházejí aktualizace
+
+API poskytovatelé posílají události na ověřovaný webhook. U Mailgun běží navíc synchronizace přes Logs API. Duplicitní události nesmějí opakovaně navyšovat čítače; opožděné přijetí nesmí vrátit doručenou zprávu do staršího stavu.
+
+Poslední trvalá chyba Mailgun automaticky archivuje kontakt; dočasná ho ponechá aktivní. Stížnost a odhlášení Mailgun zruší odběr, archivují kontakt a ruší jeho fronty.
+
+<Note>
+  Archivní položka v historii je samostatný záznam. Nejde o nové odeslání ani o potvrzení doručení předchozí zprávy. Tracking otevření a kliknutí není součástí popsaného toku.
+</Note>
+
+Pokud chybí očekávaná událost, pokračujte [řešením potíží](/guides/troubleshooting). Správce může zkontrolovat [cron a synchronizaci](/admin/operations).

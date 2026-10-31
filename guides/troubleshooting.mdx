@@ -1,0 +1,46 @@
+---
+title: "Vyřešte potíže s přihlášením a rozesílkou"
+sidebarTitle: "Řešení potíží"
+description: "Najděte příčinu nepřístupné instalace, neaktivního propojení, chybějícího webhooku nebo stojící fronty a zvolte další krok bez zbytečného opakování zpráv."
+keywords:
+  - "chyba"
+  - "přihlášení"
+  - "fronta"
+  - "webhook"
+  - "HTTP 401"
+  - "HTTP 503"
+---
+
+Při potížích ve FEBA EmailApp nejprve rozlište přihlášení, konfiguraci propojení a zpracování fronty. Obsluha může obnovit session a zkontrolovat stav; serverovou konfiguraci musí ověřit správce instalace.
+
+<AccordionGroup>
+  <Accordion title="Aplikace hlásí chybějící konfiguraci nebo HTTP 503">
+    Správce ověří povinné proměnné pro databázi a přístupové heslo ve webovém PHP procesu. Pro odesílací propojení je nutný také šifrovací klíč. HTTP 503 nemusí znamenat chybějící konfiguraci; uložení může selhat i kvůli databázi nebo poskytovateli. Pokračujte [instalací](/admin/installation).
+  </Accordion>
+
+  <Accordion title="Požadavek vrací HTTP 401 nebo 403">
+    U chráněných odesílacích endpointů HTTP 401 požaduje nové přihlášení. HTTP 403 při zápisu znamená neověřený požadavek; obnovte stránku a znovu se přihlaste. Vypršení session maže rozepsaná tajemství, takže je případně zadejte znovu.
+  </Accordion>
+
+  <Accordion title="Propojení nelze aktivovat">
+    Uložte změny a proveďte odesílací test aktuální konfigurace. U API musí přijít doručení konkrétního testu přes ověřený webhook; pouhý ping nestačí. Mailtrap vyžaduje odeslání i doručení pro Transactional a Bulk. Pak použijte **Obnovit stav**.
+  </Accordion>
+
+  <Accordion title="Test je přijatý, ale webhook není ověřený">
+    Zkontrolujte schránku, URL z editoru a nastavení webhooku u poskytovatele. Musí směřovat do správné instalace a používat odpovídající podpisový klíč nebo Bearer token. Správce ověří veřejnou HTTPS dostupnost endpointu. U MailerSend používejte webhook verze 2; Mailtrap má dva samostatné klíče.
+  </Accordion>
+
+  <Accordion title="Počet kontaktů ve frontě je nula">
+    Zkontrolujte typ rozesílky, stavy validace, potvrzení odběru, ochrannou lhůtu a skupiny. Počkejte na dokončení přepočtu. Bez výběru skupin se uplatní všechny skupiny, ostatní filtry zůstávají aktivní.
+  </Accordion>
+
+  <Accordion title="Fronta se po vytvoření nehýbe">
+    Správce ověří plánovač, konfiguraci CLI a správný cron pro nabídky nebo potvrzení. U HTTP cronů prověří autentizaci. Zkontrolujte také plánování a případné pozastavení použité verze propojení. Pouhé otevření aplikace nepotvrzuje běh workeru.
+  </Accordion>
+
+  <Accordion title="Zpráva má neznámý výsledek">
+    Neopakujte odeslání automaticky. Nejprve dohledávejte zprávu u poskytovatele a vyčkejte na webhook nebo synchronizaci Mailgun. Teprve po prověření rozhodněte o nové kampani. Podrobnosti vysvětlují [stavy doručení](/guides/delivery).
+  </Accordion>
+</AccordionGroup>
+
+Při předávání problému správci uveďte typ rozesílky, poskytovatele a přesné znění chyby. Nesdílejte přístupová hesla, klíče ani export skutečných kontaktů.

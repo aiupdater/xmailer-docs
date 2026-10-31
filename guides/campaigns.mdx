@@ -1,0 +1,46 @@
+---
+title: "Připravte obsah a vytvořte frontu rozesílky"
+sidebarTitle: "Rozesílky"
+description: "Připravte šablonu nabídky či potvrzení, nastavte filtry a aktivní propojení. Zkontrolujte počet kontaktů a vytvořte samostatnou frontu pro rozesílku."
+keywords:
+  - "fronta"
+  - "nabídky"
+  - "potvrzení"
+  - "šablona"
+  - "řízené odesílání"
+---
+
+FEBA EmailApp vede samostatné fronty pro nabídky a potvrzení odběru. Před vytvořením fronty připravte obsah a ověřte příjemce; následné odesílání zajišťuje serverový cron.
+
+## Připravte šablonu
+
+V příslušném panelu vzhledu upravte předmět a obsah e-mailu. Skupinová varianta může přepsat výchozí šablonu. Pokud pro skupinu varianta chybí, aplikace použije výchozí obsah. Zkontrolujte proto i výchozí šablonu a případné jazykové nastavení odhlášení.
+
+## Vytvořte frontu
+
+<Steps>
+  <Step title="Otevřete správný typ rozesílky">
+    V **Manažeru hromadné rozesílky** zkontrolujte, zda připravujete **Nabídky**, nebo **Potvrzení**. Jejich fronty a průběhy jsou oddělené.
+  </Step>
+  <Step title="Nastavte filtry">
+    Vyberte stavy validace, ochrannou lhůtu a skupiny. Nabídky pracují s potvrzeným odběrem, potvrzení s nepotvrzeným. Bez skupinového výběru se zahrnou všechny skupiny, na které dopadají ostatní filtry.
+  </Step>
+  <Step title="Zkontrolujte metodu a počet">
+    V poli **Metoda odesílání** ponechte výchozí propojení nebo zvolte jiné aktivní. Zkontrolujte **Řízené odesílání** a počkejte na výpočet **Kontaktů ve frontě**. Při nulovém počtu nelze frontu vytvořit.
+  </Step>
+  <Step title="Vytvořte a sledujte frontu">
+    Stiskněte **Vytvořit frontu** a sledujte odpovídající průběh. Přijetí poskytovatelem vyhodnocujte odděleně od doručení.
+  </Step>
+</Steps>
+
+Frontu lze připravit také z označených kontaktů v seznamu. I tento výběr umožňuje přepsat výchozí aktivní propojení.
+
+## Změna nastavení a zastavení
+
+Fronta ukládá vybranou metodu i konkrétní verzi konfigurace. Pozdější oprava údajů starou frontu neopraví. Pokud potřebujete novou konfiguraci, zastavte původní frontu a připravte novou po prověření stavu zpráv.
+
+<Warning>
+  Zastavení odstraní čekající položky a požádá o zrušení rezervovaných před síťovým pokusem. Zprávu právě předávanou nebo již přijatou poskytovatelem nelze odvolat. Reset průběhu odmítne aktivní frontu.
+</Warning>
+
+Nejasné výsledky před opakováním prověřte podle [historie doručení](/guides/delivery). Pokud se fronta nehýbe, použijte [řešení potíží](/guides/troubleshooting).

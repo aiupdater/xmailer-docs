@@ -1,54 +1,47 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "xMailer",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0055FF",
+    "light": "#0099FF",
+    "dark": "#0d6efd"
   },
-  "favicon": "/favicon.svg",
   "navigation": {
     "pages": [
       {
-        "group": "Getting Started",
+        "group": "Začínáme",
         "pages": [
           "index",
           "quickstart"
         ]
+      },
+      {
+        "group": "Práce s aplikací",
+        "pages": [
+          "guides/contacts",
+          "guides/connections",
+          "guides/campaigns",
+          "guides/delivery",
+          "guides/troubleshooting"
+        ]
+      },
+      {
+        "group": "Správa instalace",
+        "pages": [
+          "admin/installation",
+          "admin/operations"
+        ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    ]
   },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:support@mintlify.com"
+        "href": "https://github.com/aiupdater/febaEmail.app",
+        "label": "GitHub"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
-    }
+    ]
   },
   "contextual": {
     "options": [
@@ -64,9 +57,28 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "github": "https://github.com/aiupdater/febaEmail.app"
     }
+  },
+  "description": "Česká dokumentace správy kontaktů, odesílacích propojení a e-mailových kampaní pro webovou aplikaci xMailer.",
+  "appearance": {
+    "default": "light"
+  },
+  "background": {
+    "decoration": "windows",
+    "color": {
+      "light": "#F3F4F6",
+      "dark": "#101010"
+    }
+  },
+  "search": {
+    "prompt": "Hledat v dokumentaci…"
+  },
+  "fonts": {
+    "family": "Montserrat",
+    "weight": 500
+  },
+  "icons": {
+    "library": "fontawesome"
   }
 }

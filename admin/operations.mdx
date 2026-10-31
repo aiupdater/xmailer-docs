@@ -1,0 +1,66 @@
+---
+title: "Provozujte fronty a ověřujte změny aplikace"
+sidebarTitle: "Provoz a ověření"
+description: "Spouštějte oddělené crony nabídek, potvrzení a validace, kontrolujte synchronizaci Mailgun a ověřujte zdroje i produkční assety před nasazením změn."
+keywords:
+  - "cron"
+  - "fronty"
+  - "ověření"
+  - "testy"
+  - "PWA"
+  - "minifikace"
+---
+
+Fronty FEBA EmailApp potřebují pravidelný serverový běh. Webový klient zobrazuje průběh, ale sám nedokazuje, že cron zpracovává čekající zprávy nebo dokončil synchronizaci událostí.
+
+## Úlohy plánovače
+
+| Skript | Úloha |
+| --- | --- |
+| `cron_offer.php` | Zpracování nabídkové fronty. |
+| `cron_confirm.php` | Zpracování potvrzovací fronty. |
+| `cron_validate.php` | Zpracování validace adres. |
+| `cron_mailgun_sync.php` | Synchronizace událostí Mailgun přes Logs API. |
+
+Časování odesílacích úloh přizpůsobte provozu a existujícímu plánování. Synchronizaci Mailgun projektový postup nastavuje každých pět minut. Používejte absolutní cesty a stejné potřebné prostředí jako webové PHP.
+
+```bash
+php /absolutni/cesta/febaEmail.app/cron_mailgun_sync.php
+```
+
+CLI odesílacích workerů nepotřebuje browser session. Při HTTP spouštění odesílacích a Mailgun cronů používejte HTTPS a hlavičku `X-FEBA-Cron-Token`. Náhradní parametr `cron_token` může skončit v přístupových logách. Neplatná hlavička má přednost před parametrem.
+
+## Kontrolujte dokončení synchronizace
+
+Mailgun synchronizace průběžně načítá nové události a znovu prochází dostupné okno posledních 30 dní. Skutečný rozsah omezuje retence účtu. Stránkování se ukládá mezi běhy a SQL zámek omezuje souběh.
+
+Počet `checked` není potvrzení úplnosti. Sledujte chyby, zbývající `pending_pages` a dokončení `complete`. Synchronizace nezíská logy, které poskytovatel již odstranil.
+
+## Ověřte změny před nasazením
+
+V kořeni aplikace spusťte dostupné kontroly:
+
+```powershell
+Get-ChildItem -Filter *.php | ForEach-Object { php -l $_.FullName }
+node --check email-list-managers.js
+node --check darkmode.js
+node --check sending-connections.js
+php tests/sending_test.php
+php tests/connections_test.php
+git diff --check
+```
+
+Testy bez sítě nepotvrzují doručení. Integrační varianty používejte pouze s určenou izolovanou testovací databází; jejich příprava může resetovat testovací data. Produkci ověřujte vlastní testovací adresou a malou frontou.
+
+## Produkční assety a PWA
+
+HTML používá minifikované CSS/JS. Regenerujte změněné balíčky, například:
+
+```powershell
+npx.cmd -y csso-cli style.css -o style-min.css
+npx.cmd -y terser email-list-managers.js -o email-list-managers-min.js -c -m
+```
+
+Při změně UI postupujte podle `DESIGN.md`, sjednoťte `?v=` v HTML a `CACHE_NAME` v `sw.js`. Po nasazení ověřte aktuální assety, novou cache a odstranění staré. Samotná úprava dokumentace běh aplikace ani PWA cache nemění.
+
+Trvalá pravidla a hranice ověření udržuje [PROJECT.md](https://github.com/aiupdater/febaEmail.app/blob/main/PROJECT.md).

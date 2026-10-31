@@ -1,0 +1,80 @@
+---
+title: "Zprovozněte vlastní instalaci FEBA EmailApp"
+sidebarTitle: "Instalace"
+description: "Připravte PHP a MySQL, nastavte povinné serverové proměnné a proveďte migraci odesílání. Oddělte lokální testovací prostředí od skutečného nasazení."
+keywords:
+  - "instalace"
+  - "PHP"
+  - "MySQL"
+  - "prostředí"
+  - "migrace"
+  - "Docker"
+---
+
+FEBA EmailApp se nasazuje jako PHP a JavaScript soubory s MySQL kompatibilní databází. Tento návod je určen správci vlastní instalace; obsluha již připravené aplikace začne [prvními kroky](/quickstart).
+
+## Požadavky
+
+Použijte podporované PHP 8 s PDO MySQL, cURL a OpenSSL. Připravte HTTPS, funkční CA certifikáty a plánovač úloh. Aplikace nevyžaduje Composer ani povinnou instalaci npm balíčků.
+
+## Konfigurace prostředí
+
+Následující názvy jsou konfigurační proměnné, nikoli hodnoty k převzetí:
+
+| Proměnná | Účel |
+| --- | --- |
+| `FEBA_DB_DSN` | PDO DSN databáze MySQL. |
+| `FEBA_DB_USER` | Databázový uživatel. |
+| `FEBA_DB_PASSWORD` | Databázové heslo. |
+| `FEBA_ACCESS_PASSWORD` | Heslo pro přihlášení do aplikace. |
+| `FEBA_SENDING_MASTER_KEY` | Base64 kódování 32 náhodných bajtů pro šifrování uložených propojení. |
+| `FEBA_CRON_TOKEN` | Tajemství pro autentizaci cronů přes HTTP. |
+
+Hodnoty nastavte v chráněné konfiguraci hostingu pro webové PHP a pro potřebné CLI úlohy. Neukládejte je do repozitáře ani dokumentace.
+
+<Warning>
+  Šifrovací klíč zálohujte odděleně od databáze a po uložení propojení jej běžnou změnou prostředí nenahrazujte. Historické revize používají existující fronty; automatická rotace není implementována.
+</Warning>
+
+## Připravte databázi a aplikaci
+
+<Steps>
+  <Step title="Získejte zdroje a připravte databázi">
+    ```bash
+    git clone https://github.com/aiupdater/febaEmail.app.git
+    cd febaEmail.app
+    ```
+
+    Pro existující instalaci nejprve zálohujte databázi a soubory a zastavte odesílací crony. `mysql-struktura.sql` je výchozí schéma, nikoli migrační postup. Dump obsahuje historický INSERT do `sentemail_log`; při tvorbě čisté databáze jej nepřenášejte jako vlastní historii.
+  </Step>
+  <Step title="Proveďte migraci odesílání">
+    Se správným prostředím a oprávněními CREATE/ALTER spusťte:
+
+    ```bash
+    php sending_migrate.php
+    ```
+
+    Migrace připraví schéma, převede původní propojení a může archivovat kontakty s poslední trvalou chybou Mailgun. Zkontrolujte její výstup.
+  </Step>
+  <Step title="Zpřístupněte aplikaci">
+    Pro místní ověření s připravenou databází lze spustit:
+
+    ```bash
+    php -S localhost:8000
+    ```
+
+    Otevřete `http://localhost:8000`. Pro nasazení použijte vlastní HTTPS hosting a doplňte [crony a provozní kontroly](/admin/operations).
+  </Step>
+</Steps>
+
+## Izolované vývojové prostředí
+
+Repozitář obsahuje `.devcontainer/` s PHP 8.4, MySQL 8.4 a jednorázovým importem bez historického logu odeslání. Pro lokální Docker prostředí použijte:
+
+```bash
+docker compose -f .devcontainer/docker-compose.yml up --build -d
+```
+
+Jeho testovací konfigurace není produkční. Aktuální image připravuje PDO MySQL, nedoplňuje cURL ani `FEBA_SENDING_MASTER_KEY`; samotné spuštění kontejnerů proto nepotvrzuje připravenost všech API poskytovatelů. Skutečné testy odeslání provádějte až po doplnění prostředí.
+
+Zdroj konfigurace: [devcontainer](https://github.com/aiupdater/febaEmail.app/tree/main/.devcontainer), [migrace](https://github.com/aiupdater/febaEmail.app/blob/main/sending_migrate.php).

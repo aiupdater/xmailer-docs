@@ -1,0 +1,46 @@
+---
+title: "Přidávejte kontakty a spravujte skupiny"
+sidebarTitle: "Kontakty a skupiny"
+description: "Uložte adresy po řádcích, přiřaďte jim skupinu a pracujte s validací, odběrem i archivem. Rozlište ověření adresy od potvrzení souhlasu s odběrem."
+keywords:
+  - "kontakty"
+  - "skupiny"
+  - "validace"
+  - "archiv"
+  - "odběr"
+---
+
+Kontakty ve FEBA EmailApp mají vedle adresy také skupinu, výsledek validace, stav odběru a historii. Tyto údaje určují, které kontakty se dostanou do připravované fronty.
+
+## Uložte adresy
+
+<Steps>
+  <Step title="Vyberte skupinu">
+    Otevřete **Přidat emaily** a zvolte skupinu pro nové kontakty. Pokud ji nepotřebujete, ponechte volbu bez skupiny.
+  </Step>
+  <Step title="Vložte seznam">
+    Zadejte každou adresu na samostatný řádek. Používejte adresy, se kterými máte oprávnění pracovat.
+
+    ```text
+    prijemce@example.com
+    dalsi-prijemce@example.com
+    ```
+  </Step>
+  <Step title="Zkontrolujte uložení">
+    Stiskněte **Uložit emaily** a přečtěte výsledek. Při částečném uložení zkontrolujte počty uložených a neuložených adres; neopakujte automaticky celý seznam.
+  </Step>
+</Steps>
+
+## Upravte skupinu
+
+Ve **Správě skupin** vyplňte název a barvu. **Vytvořit** založí novou skupinu. Tlačítko s tužkou otevře existující skupinu; změny potvrďte pomocí **Uložit**, nebo je opusťte přes **Zrušit**. Barva pomáhá rozpoznat skupinu v seznamu i ve výběrech.
+
+## Rozlišujte validaci a odběr
+
+Validace kontroluje technické vlastnosti adresy, například syntaxi, disposable doménu, MX a SMTP výsledek. Technicky platná adresa není potvrzený odběr. Nabídková a potvrzovací fronta pracují s odlišným stavem odběru a vlastními filtry.
+
+## Pracujte s archivem a historií
+
+Archivace, zrušení odběru a historie odeslání představují různé údaje. Před další rozesílkou ověřte aktuální stav kontaktu. Poslední trvalá chyba Mailgun může kontakt automaticky archivovat; dočasná chyba ho ponechává aktivní.
+
+Historie kontaktu pomůže vysvětlit předchozí odeslání i archivaci. Podrobnosti najdete ve [stavech doručení](/guides/delivery), výběr příjemců v [rozesílkách](/guides/campaigns).

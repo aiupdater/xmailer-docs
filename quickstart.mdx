@@ -1,47 +1,37 @@
 ---
-title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+title: "Začněte používat FEBA EmailApp"
+sidebarTitle: "První kroky"
+description: "Přihlaste se do připravené instalace FEBA EmailApp, založte testovací skupinu, uložte vlastní adresu a ověřte propojení před první skutečnou rozesílkou."
+keywords:
+  - "začátek"
+  - "test"
+  - "přihlášení"
+  - "první kontakt"
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
-
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
-
-## Prerequisites
-
-Before you begin, you must have:
-
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+Pro první práci s FEBA EmailApp potřebujete adresu fungující instalace a přístupové heslo od jejího správce. Nejprve uložte vlastní kontakt; odeslání testovací zprávy proveďte až samostatným výslovným krokem.
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
-
-    ```bash
-    npm install your-package
-    ```
+  <Step title="Přihlaste se">
+    Otevřete aplikaci a zadejte přístupové heslo. Pokud instalace ještě neběží, předejte správci [návod k instalaci](/admin/installation).
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
-
-    ```bash
-    your-cli init
-    ```
+  <Step title="Vytvořte testovací skupinu">
+    Otevřete **Přidat emaily**. V části **Správa skupin** vyplňte název, například „Vlastní test“, vyberte barvu a stiskněte **Vytvořit**.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
-
-    ```bash
-    your-cli start
-    ```
+  <Step title="Přidejte vlastní adresu">
+    Ve výběru skupiny zvolte nově založenou skupinu. Vložte adresu své schránky a stiskněte **Uložit emaily**. Adresy vkládejte po jedné na řádek. Po uložení zkontrolujte kontakt v seznamu.
+  </Step>
+  <Step title="Ověřte odesílací propojení">
+    Otevřete **Nastavení odesílání**. Podle [návodu k propojení](/guides/connections) uložte konfiguraci a odešlete test na svou schránku. U API vyčkejte také na ověřený doručovací webhook; Mailtrap vyžaduje oba proudy.
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+## Jak poznáte výsledek
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
-</Tip>
+Kontakt je uložený a přiřazený ke zvolené skupině. Odesílací test má vlastní stav v editoru propojení. U API je ověřené doručení podmínkou aktivace; samotné přijetí požadavku poskytovatelem nestačí.
+
+<Warning>
+  **Odeslat test** skutečně odešle e-mail. Použijte vlastní schránku. Vytvoření běžné fronty může následně spustit rozesílku prostřednictvím cronů.
+</Warning>
+
+Pro první kampaň pokračujte [přípravou rozesílky](/guides/campaigns). Před použitím většího seznamu si přečtěte [význam stavů doručení](/guides/delivery).

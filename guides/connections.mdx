@@ -1,0 +1,53 @@
+---
+title: "Nastavte a aktivujte odesílací propojení"
+sidebarTitle: "Propojení"
+description: "Připojte SMTP nebo podporovanou e-mailovou platformu, uložte přístupové údaje a dokončete testy, které FEBA EmailApp vyžaduje před aktivací propojení."
+keywords:
+  - "SMTP"
+  - "Mailgun"
+  - "SMTP2GO"
+  - "MailerSend"
+  - "Mailtrap"
+  - "webhook"
+---
+
+V **Nastavení odesílání** spravujete uložená propojení FEBA EmailApp. SMTP serverů může být více; pro Mailgun, SMTP2GO, MailerSend a Mailtrap aplikace udržuje vždy jedno nastavení dané platformy.
+
+<Steps>
+  <Step title="Vyberte typ a vyplňte konfiguraci">
+    Zvolte **Typ propojení** a otevřete editor. U SMTP zadejte server, port, uživatele, šifrování, odesílatele a Reply-To. U API použijte ověřeného odesílatele a příslušné klíče. Mailgun navíc vyžaduje region a doménu.
+  </Step>
+  <Step title="Uložte a nastavte webhook">
+    Stiskněte **Uložit propojení**. U API zkopírujte **Webhook URL** z editoru do nastavení poskytovatele. Řiďte se nápovědou aplikace pro události a podpisové údaje.
+  </Step>
+  <Step title="Odešlete test a obnovte stav">
+    Použijte **Odeslat test** s vlastní adresou. U API vyčkejte na doručení konkrétní testovací zprávy přes webhook a stiskněte **Obnovit stav**. Mailtrap vyžaduje také **Odeslat Bulk test** a jeho doručení.
+  </Step>
+  <Step title="Aktivujte propojení">
+    Po úspěšných testech propojení aktivujte v seznamu. Aktivní propojení můžete nastavit jako výchozí pro nové rozesílky.
+  </Step>
+</Steps>
+
+## Co vyžadují jednotlivé platformy
+
+| Platforma | Údaje a podmínky aktivace |
+| --- | --- |
+| SMTP | Heslo SMTP a úspěšný odesílací test. |
+| Mailgun | Hlavní klíč pro logy, odesílací a podpisový klíč; test odeslání i doručení. |
+| SMTP2GO | API klíč a Bearer token webhooku; test odeslání i doručení. |
+| MailerSend | API token, podpisový klíč a webhook verze 2; test odeslání i doručení. |
+| Mailtrap | API token a samostatné podpisové klíče Transactional/Bulk; test odeslání a doručení obou proudů. |
+
+Mailtrap používá pro nabídky Bulk a pro potvrzení Transactional. MailerSend může pro vlastní odhlašovací hlavičky vyžadovat podporovaný tarif.
+
+## Změny klíčů a existující fronty
+
+Prázdné pole zachovává uložené tajemství. Výslovné odstranění se provede až uložením. Celé uložené klíče se do klienta nevracejí; po uložení se vstupní pole vymažou.
+
+Změna konfigurace vyžaduje nové testy a aktivaci. Prosté přejmenování ověření zachová. Před změnou aktivního výchozího propojení potřebujete jinou aktivní náhradu.
+
+<Note>
+  Existující fronty uchovávají původní verzi propojení. Změna klíče, výchozí volby ani deaktivace je nepřesměruje na nové údaje.
+</Note>
+
+Zdroj chování: [UX-CONTRACT.md](https://github.com/aiupdater/febaEmail.app/blob/main/UX-CONTRACT.md) a implementace [správy propojení](https://github.com/aiupdater/febaEmail.app/blob/main/sending_connections.php).
