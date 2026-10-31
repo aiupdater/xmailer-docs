@@ -2,65 +2,12 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "xMailer",
+  "description": "Česká dokumentace správy kontaktů, odesílacích propojení a e-mailových kampaní pro webovou aplikaci xMailer.",
   "colors": {
     "primary": "#0055FF",
     "light": "#0099FF",
     "dark": "#0d6efd"
   },
-  "navigation": {
-    "pages": [
-      {
-        "group": "Začínáme",
-        "pages": [
-          "index",
-          "quickstart"
-        ]
-      },
-      {
-        "group": "Práce s aplikací",
-        "pages": [
-          "guides/contacts",
-          "guides/connections",
-          "guides/campaigns",
-          "guides/delivery",
-          "guides/troubleshooting"
-        ]
-      },
-      {
-        "group": "Správa instalace",
-        "pages": [
-          "admin/installation",
-          "admin/operations"
-        ]
-      }
-    ]
-  },
-  "navbar": {
-    "links": [
-      {
-        "href": "https://github.com/aiupdater/febaEmail.app",
-        "label": "GitHub"
-      }
-    ]
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
-    ]
-  },
-  "footer": {
-    "socials": {
-      "github": "https://github.com/aiupdater/febaEmail.app"
-    }
-  },
-  "description": "Česká dokumentace správy kontaktů, odesílacích propojení a e-mailových kampaní pro webovou aplikaci xMailer.",
   "appearance": {
     "default": "light"
   },
@@ -70,9 +17,6 @@
       "light": "#F3F4F6",
       "dark": "#101010"
     }
-  },
-  "search": {
-    "prompt": "Hledat v dokumentaci…"
   },
   "fonts": {
     "heading": {
@@ -93,8 +37,81 @@
       "family": "Montserrat"
     },
     "eyebrow": {
-      "source": "dropdown",
+      "source": "group",
       "style": "bar"
     }
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/aiupdater/febaEmail.app"
+      }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/aiupdater/febaEmail.app"
+    }
+  },
+  "search": {
+    "prompt": "Hledat v dokumentaci…"
+  },
+  "seo": {
+    "indexing": "all",
+    "metatags": {
+      "og:site_name": "xMailer",
+      "og:locale": "cs_CZ"
+    }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ],
+    "display": "header"
+  },
+  "navigation": {
+    "groups": [
+      {
+        "group": "Začínáme",
+        "icon": "rocket",
+        "pages": [
+          "index",
+          "quickstart"
+        ]
+      },
+      {
+        "group": "Práce s aplikací",
+        "icon": "envelope-open-text",
+        "pages": [
+          "guides/contacts",
+          "guides/connections",
+          "guides/campaigns",
+          "guides/delivery"
+        ]
+      },
+      {
+        "group": "Správa instalace",
+        "icon": "server",
+        "pages": [
+          "admin/installation",
+          "admin/operations"
+        ]
+      },
+      {
+        "group": "Nápověda",
+        "icon": "life-ring",
+        "pages": [
+          "guides/troubleshooting"
+        ]
+      }
+    ]
   }
 }
