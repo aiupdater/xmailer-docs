@@ -39,7 +39,8 @@
     "eyebrow": {
       "source": "group",
       "style": "bar"
-    }
+    },
+    "preset": "minimal"
   },
   "navbar": {
     "links": [
@@ -51,7 +52,8 @@
   },
   "footer": {
     "socials": {
-      "github": "https://github.com/aiupdater/febaEmail.app"
+      "github": "https://github.com/aiupdater",
+      "x": "https://x.com/0ndrej_Tuma"
     }
   },
   "search": {
@@ -70,12 +72,11 @@
       "view",
       "chatgpt",
       "claude",
-      "perplexity",
       "mcp",
       "cursor",
       "vscode"
     ],
-    "display": "header"
+    "display": "toc"
   },
   "navigation": {
     "groups": [
@@ -113,5 +114,13 @@
         ]
       }
     ]
+  },
+  "styling": {
+    "eyebrows": "section",
+    "codeblocks": "system",
+    "latex": true
+  },
+  "metadata": {
+    "timestamp": true
   }
 }
