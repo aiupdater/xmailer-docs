@@ -75,8 +75,14 @@
     "prompt": "Hledat v dokumentaci…"
   },
   "fonts": {
-    "family": "Montserrat",
-    "weight": 500
+    "heading": {
+      "family": "Montserrat",
+      "weight": 600
+    },
+    "body": {
+      "family": "Montserrat",
+      "weight": 400
+    }
   },
   "icons": {
     "library": "fontawesome"
